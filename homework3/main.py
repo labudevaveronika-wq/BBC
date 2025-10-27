@@ -1,5 +1,7 @@
 import random
 from random import randint
+massive_fot_player = []
+hidden_massive = []
 n, m = int(input()), int(input())
 pospx = 1
 pospy = 1
@@ -10,6 +12,21 @@ keyy = [i for i in range(2, n) if i != posex]
 key_flag = False
 poskx = random.choice(keyx)
 posky = random.choice(keyy)
+
+for i in range(n+1):
+    row = []
+    for j in range(m+1):
+        if i == 0 or j == m or i == n or j == 0: row.append('.')
+        else: row.append('#')
+    hidden_massive.append(row)
+
+for i in range(n + 1):
+    for j in range(m + 1):
+        if i == pospy and j == pospx: hidden_massive[i][j] = "P"
+        elif i == posey and j == posex: hidden_massive[i][j] = "E"
+        elif i == posky and j == poskx: hidden_massive[i][j] = "K"
+    continue
+
 while (pospx != posex or pospy != posey) or key_flag == False:
     for i in range(n+1):
         for j in range(m+1):
