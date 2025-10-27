@@ -6,13 +6,23 @@ n += 2
 m += 2
 pospx = 1
 pospy = 1
+key_flag = False
+sword_flag = False
 posex = randint(2, n-2)
 posey = randint(2, m-2)
 keyx = [i for i in range(2, n-2) if i != posex]
 keyy = [i for i in range(2, n-2) if i != posex]
-key_flag = False
 poskx = random.choice(keyx)
 posky = random.choice(keyy)
+swordx = [i for i in range(2, n-1) if i != posex and i != poskx]
+swordy = [i for i in range(2, n-1) if i != posex and i != posky]
+possx = random.choice(swordx)
+possy = random.choice(swordy)
+monsterx = [i for i in range(2, n-1) if i != posex and i != poskx and i != possx]
+monstery = [i for i in range(2, n-1) if i != posex and i != posky and i != possy]
+posmx = random.choice(swordx)
+posmy = random.choice(swordy)
+
 
 massive_for_player = []
 for i in range(n+2):
@@ -33,6 +43,8 @@ for i in range(n+2):
 for i in range(n):
     for j in range(m):
         if i == pospy and j == pospx: hidden_massive[i][j] = "P"
+        elif i == possy and j == possx: hidden_massive[i][j] = "S"
+        elif i == posmy and j == posmx: hidden_massive[i][j] = "M"
         elif i == posey and j == posex: hidden_massive[i][j] = "E"
         elif i == posky and j == poskx: hidden_massive[i][j] = "K"
     continue
@@ -47,7 +59,7 @@ while (pospx != posex or pospy != posey) or key_flag == False:
         print()
 
     act = str(input())
-    if not (pospx == poskx and pospy == posky or pospx == posex and pospy == posey):
+    if not (pospx == poskx and pospy == posky or pospx == posex and pospy == posey or pospx == possx and pospy == possy and pospx == posmx and pospy == posmy):
         massive_for_player[pospy][pospx] = "#"
     new_px, new_py = pospx, pospy
 
@@ -55,6 +67,19 @@ while (pospx != posex or pospy != posey) or key_flag == False:
     elif act == 's': new_py += 1
     elif act == 'd': new_px += 1
     elif act == 'a': new_px -= 1
+    if new_px == possx and new_py == possy:
+        print("Вы нашли меч!")
+        input("Нажми Enter чтобы продолжить...")
+        massive_for_player[possy][possx] = "S"
+    if new_px == posmx and new_py == posmy:
+        if sword_flag == True:
+            print("У Вас есть меч, Вы победили монстра!")
+            input("Нажми Enter чтобы продолжить...")
+            massive_for_player[posey][posex] = "M"
+        else:
+            print("К сожалению, у Вас нет меча, монстр напал на Вас!")
+            input("Нажми Enter чтобы продолжить...")
+            massive_for_player[posey][posex] = "M"
     if new_px == posex and new_py == posey:
         if key_flag == True:
             print("Вы выиграли!")
