@@ -19,7 +19,7 @@ while pospx != posex and pospy != posey:
     elif act == 'd': new_px += 1
     elif act == 'a': new_px -= 1
 
-    if 0 <= new_px <= m and 0 <= new_py <= n: pospx, pospy = new_px, new_py
+    if 1 <= new_px <= m and 1 <= new_py <= n: pospx, pospy = new_px, new_py
     else: print("Нельзя соврешить такое действие")
 # w - вверх
 # a - влево
