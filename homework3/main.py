@@ -103,6 +103,7 @@ while (pospx != posex or pospy != posey) or key_flag == False:
 
     if 1 <= new_px < m-1 and 1 <= new_py < n-1: pospx, pospy = new_px, new_py
     else: print("Нельзя совершить такое действие")
+
 # w - вверх
 # a - влево
 # s - вниз
