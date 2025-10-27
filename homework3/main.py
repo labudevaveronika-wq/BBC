@@ -55,6 +55,14 @@ while (pospx != posex or pospy != posey) or key_flag == False:
     elif act == 's': new_py += 1
     elif act == 'd': new_px += 1
     elif act == 'a': new_px -= 1
+    if new_px == posex and new_py == posey:
+        if key_flag == True:
+            print("Вы выиграли!")
+            break
+        else:
+            print("Вы нашли портал, но у вас нет ключа, найдите его и возвращайтесь!")
+            input("Нажми Enter чтобы продолжить...")
+            massive_for_player[posey][posex] = "E"
     if new_px == poskx and new_py == posky:
 #        print("!!!")
         key_flag = True
@@ -64,7 +72,7 @@ while (pospx != posex or pospy != posey) or key_flag == False:
 
     if 1 <= new_px < m-1 and 1 <= new_py < n-1: pospx, pospy = new_px, new_py
     else: print("Нельзя совершить такое действие")
-print("Вы выиграли!")
+
 # w - вверх
 # a - влево
 # s - вниз
