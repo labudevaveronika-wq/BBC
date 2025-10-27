@@ -2,9 +2,9 @@ from random import randint
 n, m = int(input()), int(input())
 pospx = 1
 pospy = 1
-posex = randint(2, n-1)
-posey = randint(2, m-1)
-while pospx != posex and pospy != posey:
+posex = randint(2, n-2)
+posey = randint(2, m-2)
+while pospx != posex or pospy != posey:
     for i in range(n+1):
         for j in range(m+1):
             if i == pospy and j == pospx: print("P", end= " ")
@@ -21,6 +21,7 @@ while pospx != posex and pospy != posey:
 
     if 1 <= new_px <= m and 1 <= new_py <= n: pospx, pospy = new_px, new_py
     else: print("Нельзя соврешить такое действие")
+print("Вы выиграли!")
 # w - вверх
 # a - влево
 # s - вниз
