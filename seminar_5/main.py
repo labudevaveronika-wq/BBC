@@ -40,8 +40,7 @@ class Analizator(QWidget): # создаем класс Analizator, которы�
 
         self.result_label.setText(result)
 
-if __name__ == "__main__": # запуск
-    app = QApplication(sys.argv)
-    window = Analizator()
-    window.show()
-    sys.exit(app.exec())
+app = QApplication(sys.argv)
+window = Analizator()
+window.show()
+sys.exit(app.exec())
